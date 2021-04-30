@@ -63,4 +63,4 @@ end)
 [MIT](./LICENSE)
 
 KeyGuider uses the following libraries:
-(Flipper)[https://github.com/Reselim/Flipper] (MIT)
+[Flipper](https://github.com/Reselim/Flipper) (MIT)
