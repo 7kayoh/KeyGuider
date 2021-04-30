@@ -1,5 +1,15 @@
 return function(Text: string, Parent: instance): Frame
 	local Key = Instance.new("Frame")
+	local Container = Instance.new("Frame")
+	local Background = Instance.new("Frame")
+	local Body = Instance.new("Frame")
+	local Key2 = Instance.new("TextLabel")
+	local UICorner = Instance.new("UICorner")
+	local UICorner2 = Instance.new("UICorner")
+	local UIPadding = Instance.new("UIPadding")
+	local UIPadding2 = Instance.new("UIPadding")
+	local UIScale = Instance.new("UIScale")
+	
 	Key.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Key.BackgroundTransparency = 1
 	Key.BorderSizePixel = 0
@@ -7,7 +17,6 @@ return function(Text: string, Parent: instance): Frame
 	Key.Size = UDim2.new(0, 0, 0, 50)
 	Key.Parent = Parent
 
-	local Container = Instance.new("Frame")
 	Container.AnchorPoint = Vector2.new(0.5, 0.5)
 	Container.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 	Container.BorderSizePixel = 0
@@ -16,17 +25,14 @@ return function(Text: string, Parent: instance): Frame
 	Container.Size = UDim2.new(1, 0, 1, 4)
 	Container.Parent = Key
 
-	local Background = Instance.new("Frame")
 	Background.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 	Background.BorderSizePixel = 0
 	Background.Name = "Background"
 	Background.Size = UDim2.new(1, 0, 1, 0)
 	Background.Parent = Container
 
-	local UICorner = Instance.new("UICorner")
 	UICorner.Parent = Container
 
-	local Body = Instance.new("Frame")
 	Body.AnchorPoint = Vector2.new(0.5, 0)
 	Body.BackgroundTransparency = 1
 	Body.BorderSizePixel = 0
@@ -36,21 +42,17 @@ return function(Text: string, Parent: instance): Frame
 	Body.Size = UDim2.new(0, 0, 1, 0)
 	Body.Parent = Container
 
-	local UIPadding = Instance.new("UIPadding")
 	UIPadding.PaddingBottom = UDim.new(0, 2)
 	UIPadding.PaddingLeft = UDim.new(0, 2)
 	UIPadding.PaddingRight = UDim.new(0, 2)
 	UIPadding.PaddingTop = UDim.new(0, 2)
 	UIPadding.Parent = Container
 
-	local UIScale = Instance.new("UIScale")
 	UIScale.Parent = Container
 
-	local UICorner2 = Instance.new("UICorner")
 	UICorner2.CornerRadius = UDim.new(0, 6)
 	UICorner2.Parent = Background
 
-	local Key2 = Instance.new("TextLabel")
 	Key2.AnchorPoint = Vector2.new(0, 0.5)
 	Key2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Key2.BackgroundTransparency = 1
@@ -65,7 +67,6 @@ return function(Text: string, Parent: instance): Frame
 	Key2.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Key2.Parent = Body
 
-	local UIPadding2 = Instance.new("UIPadding")
 	UIPadding2.PaddingLeft = UDim.new(0, 16)
 	UIPadding2.PaddingRight = UDim.new(0, 16)
 	UIPadding2.Parent = Body

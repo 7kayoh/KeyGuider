@@ -1,15 +1,15 @@
 local module = {}
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
-local Common = ReplicatedStorage:WaitForChild("Common")
-local Flipper = require(Common:WaitForChild("Flipper"))
+
+local Common = ReplicatedStorage.Common
+local Flipper = require(Common.Flipper)
 local Component = require(script.component)
 
 local springProps = {
     frequency = 2,
 	dampingRatio = 0.6,
 }
-
 local outSpringProps = {
     frequency = 3,
 	dampingRatio = 0.8,
@@ -65,7 +65,7 @@ end
 
 function module:Deploy()
     self._inputBegan = UserInputService.InputBegan:Connect(function(inputObject, isGameProcessed)
-        if self.keys[inputObject.KeyCode.Name] and not isGameProcessed then
+        if isGameProcessed and not self.keys[inputObject.KeyCode.Name] then
             local totalChecked, total = 0, 0
             self.keys[inputObject.KeyCode.Name].motor:setGoal(Flipper.Spring.new(0, outSpringProps))
             self.keys[inputObject.KeyCode.Name].checked = true
@@ -85,7 +85,7 @@ function module:Deploy()
     end)
 
     self._inputEnded = UserInputService.InputEnded:Connect(function(inputObject, isGameProcessed)
-        if self.keys[inputObject.KeyCode.Name] and not isGameProcessed then
+        if not isGameProcessed and self.keys[inputObject.KeyCode.Name] then
             self.keys[inputObject.KeyCode.Name].motor:setGoal(Flipper.Spring.new(1, springProps))
             self.keys[inputObject.KeyCode.Name].checked = false
         end
@@ -94,6 +94,7 @@ end
 
 function module:Destroy()
     local counter, total = 0, 0
+    local isDone = Instance.new("BindableEvent")
     self._inputBegan:Disconnect()
     self._inputEnded:Disconnect()
     self.onComplete:Destroy()
@@ -106,10 +107,14 @@ function module:Destroy()
             key._object = nil
             key = nil
             counter += 1
+
+            if counter == total then
+                isDone:Fire()
+            end
         end)
     end
-
-    repeat wait() until counter == total
+    isDone.Event:Wait()
+    isDone:Destroy()
     self._object:Destroy()
     self.keys = nil
     self._object = nil
