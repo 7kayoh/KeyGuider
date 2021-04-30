@@ -1,0 +1,17 @@
+{
+  "name": "KeyGuider",
+  "globIgnorePaths": [
+    "*.spec.lua"
+  ],
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Common": {
+        "$path": "packages"
+      },
+      "KeyGuider": {
+        "$path": "src"
+      }
+    }
+  }
+}
